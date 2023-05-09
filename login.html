@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <script src="/js/jquery-3.6.0.min.js"></script>
+ <link rel="stylesheet" href="css/login.css" >
+    	
+</head>
+    <body>
+        
+<div class="container">
+    <div class="image-wapper" style="background-image: url(pictures/car-rental1.png)">
+      <h1>Welcome</h1>
+    </div>
+    <div class="form-wapper">
+      <div class="form-header">
+        <h2>Login</h2>
+    
+      </div>
+      <div class="form-body">
+        <form  id="loginForm" action="/login" method="POST">
+          <div class="input-wrapper">
+            <label for="name">Name</label>
+            <input id="name" type="name" name="name" placeholder="Your name"/>
+          </div>
+          <div class="input-wrapper">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="**********"/><span class="icon show-pass"><i class="fi-rr-eye"></i></span>
+          </div>
+          <div class="input-wrapper more-action">
+          <button type="submit">Log In</button>
+          
+        </form>
+    
+      </div>
+      <div class="form-footer">
+        <p>Don't have an account yet? <a class="form-link" href="http://localhost:3000/register">Sign Up</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // Show Password
+    const form = document.getElementById('loginForm');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const response = await fetch('/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+});
+
+try {
+  const json = await response.json();
+  if (response.ok) {
+    if (json.success) {
+      // User is logged in, redirect to dashboard page
+      window.location.href = '/dashboard';
+    } else {
+      // Login failed, display error message
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = json.message;
+      form.appendChild(errorMessage);
+    }
+  } else {
+    throw new Error(json.message || response.status);
+  }
+} catch (error) {
+  console.log(error);
+  // Handle parsing error here
+}
+
+
+});
+
+/*$(".show-pass").on("click", function () {
+  var type = $(this).prev("input").attr("type");
+  if (type == "password") {
+    $(this).prev("input").attr("type", "text");
+    $(this).find("i").removeClass("fi-rr-eye").addClass("fi-rr-eye-crossed");
+  } else {
+    $(this).prev("input").attr("type", "password");
+    $(this).find("i").removeClass("fi-rr-eye-crossed").addClass("fi-rr-eye");
+  }
+});*/
+	</script>
+    </body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Images</title>
+
+  <style>
+
+
+  </style>
+</head>
+<body>
+
+
+
+
+  <div id="images-container">
+    
+  </div>
+  <script >
+    /*
+const imagesContainer = document.querySelector('#images-container');
+const data = [];
+
+fetch('http://localhost:3000/images')
+  .then(response => response.json())
+  .then(images => {
+    // Iterate over the array of image data
+
+    images.forEach(image => {
+      
+      // Create an image element
+      const img = document.createElement('img');
+      // Set the image data as the source of the image element
+      img.src = `data:${image.type};base64,${image.data}`;
+      // Append the image element to the container
+      imagesContainer.appendChild(img);
+
+      // Create a div element for the other data
+      const infoDiv = document.createElement('div');
+      // Add the other data to the div element
+      infoDiv.innerHTML = `<h2> type: ${image.typeName}</h2><p>${image.model}</p><p>${image.color}</p><p>${image.price}</p><p>${image.year}</p><p>${image.kilemeters}</p>`;
+      // Append the div element to the container
+      imagesContainer.appendChild(infoDiv);
+    });
+  })
+  .catch(error => console.error(error));*/
+
+
+
+
+const imagesContainer = document.querySelector('#images-container');
+    const data = [];
+
+    fetch('http://localhost:3000/images')
+      .then(response => response.json())
+      .then(images => {
+        // Iterate over the array of image data
+        images.forEach(image => {
+          // Create an image element
+          const img = document.createElement('img');
+          // Set the image data as the source of the image element
+          img.src = `data:${image.type};base64,${image.data}`;
+          // Append the image element to the container
+          imagesContainer.appendChild(img);
+
+          // Create a div element for the other data
+          const infoDiv = document.createElement('div');
+          // Add the other data to the div element, including a button with the car ID
+          infoDiv.innerHTML = `
+            <h2>Type: ${image.typeName}</h2>
+            <p>Model: ${image.model}</p>
+            <p>Color: ${image.color}</p>
+            <p>Price: ${image.price}</p>
+            <p>Year: ${image.year}</p>
+            <p>Kilometers: ${image.kilemeters}</p>
+            <button class="car-id" data-id="${image.idcar}">Rent Car: ${image.idcar}</button>
+          `;
+          // Append the div element to the container
+          imagesContainer.appendChild(infoDiv);
+        });
+
+// Add event listeners to all the car ID buttons
+const carIdButtons = document.querySelectorAll('.car-id');
+carIdButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const carId = button.getAttribute('data-id');
+    console.log(`Clicked on car with ID: ${carId}`);
+
+
+    const dialog = document.createElement('dialog');
+    dialog.innerHTML = `
+      <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="pickup_date">Pickup Date:</label>
+        <input type="date" id="pickup_date" name="pickup_date"> <br>
+          
+        <label for="return_date">Return Date:</label>
+        <input type="date" id="return_date" name="return_date" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <button type="submit">Rent Car</button>
+      </form>
+    `;
+    document.body.appendChild(dialog);
+    dialog.showModal();
+
+    // Handle form submission
+    dialog.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      
+      const formData = new FormData(event.target);
+      const renterName = formData.get('name');
+      //const renterEmail = formData.get('email');
+      const pickup_date = formData.get('pickup_date');
+      const return_date= formData.get('return_date');
+      const renterPhone = formData.get('phone');
+      const requestBody = JSON.stringify({
+        name: renterName,
+        carId: carId,
+        pickup_date: pickup_date,
+        return_date: return_date,
+        phone: renterPhone
+      });
+    const response =  fetch('http://localhost:3000/proba', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+       },
+         body: requestBody
+      });
+
+  
+response
+  .then(res => {
+    if (res.ok) {
+      console.log(`Renting car with ID ${carId} to ${renterName} (${pickup_date},${return_date}, ${renterPhone})`);
+      dialog.close();
+    } else {
+      res.text().then(errorMessage => {
+        if (res.status === 400) {
+          alert(errorMessage);
+        } else {
+          alert('An error occurred');
+        }
+      });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred');
+  });
+
+      
+    });
+  });
+});
+
+
+  });
+
+
+  </script>
+</body>
+</html>

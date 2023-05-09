@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fetch MySQL Image using Node.js and Display on HTML page</title>
+</head>
+<body>
+  <ul id="carsList"></ul>
+
+  <script>
+    const apiUrl = 'http://localhost:3000/car';
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(cars => { 
+        cars.forEach(car => {
+          // Create an <li> element to hold the car data
+          const carListItem = document.createElement("li");
+
+          // Create text nodes for each property of the car object
+          const idcar=document.createTextNode(`car id: ${car.idcar} `);
+          const typeName = document.createTextNode(`Type name: ${car.typeName}`);
+          const model = document.createTextNode(`Model: ${car.model}`);
+          const colorName = document.createTextNode(`Color name: ${car.colorName}`);
+          const pricePerDay = document.createTextNode(`Price per day: ${car.pricePerDay}`);
+          const year = document.createTextNode(`Year: ${car.year}`);
+          const kilemeters = document.createTextNode(`Kilometers: ${car.kilemeters}`);
+
+          // Create an <img> element to hold the car image
+          const image = document.createElement('img');
+          const blobUrl = URL.createObjectURL(new Blob([car.image], { type: 'image/jpeg' }));
+          image.src = blobUrl;
+
+          // Append the text nodes and image to the <li> element
+            carListItem.appendChild(idcar);
+          carListItem.appendChild(typeName);
+          carListItem.appendChild(model);
+          carListItem.appendChild(colorName);
+          carListItem.appendChild(pricePerDay);
+          carListItem.appendChild(year);
+          carListItem.appendChild(kilemeters);
+          carListItem.appendChild(image);
+
+          // Append the <li> element to the <ul> element in the HTML
+          const carsList = document.getElementById('carsList');
+          carsList.appendChild(carListItem);
+          console.log(image);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching car data:", error);
+      });
+  </script>
+</body>
+</html>

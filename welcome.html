@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+  <link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  </head>
+<body>
+
+  <div id="navbar">
+    <a href="#default" id="logo"><img src="http://localhost:3000/pictures/racing.png" height="40px" width="60px">WheelsOnTheGo  </a>
+    <div id="navbar-right">
+      <a class="active" href="http://localhost:3000/dashboard">Home</a>
+      <a href="http://localhost:3000/dashboard/welcome">Search</a>
+      
+      <a href="http://localhost:3000/">Log In|Register</a>
+    </div>
+  </div>
+  
+  <div style="margin-top:30px;padding:15px 15px 5px;font-size:30px">
+  </div>
+ <br> <br> <br> 
+
+ <div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="http://localhost:3000/pictures/13.jpg" width="100%" height="500px">
+    <div class="text">WheelsOnTheGo</div>
+  </div>
+  
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="http://localhost:3000/pictures/11.jpg" width="100%" height="500px">
+    <div class="text">your ride,</div>
+  </div>
+  
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="http://localhost:3000/pictures/3.jpeg" width="100%" height="500px">
+    <div class="text">your way</div>
+  </div>
+
+  
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+  
+  </div>
+  <br>
+  
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+  </div>
+  <br><br><br>
+  <div class="buttons-container">
+ <!-- Button to open the dialog box -->
+ <button   id="type-open-dialog">Brand</button>
+ <!-- Overlay to cover the content when the dialog box is open -->
+ <div id="dialog-overlay"></div>
+ <!-- Container for the dialog box content -->
+ <div id="dialog-container">
+   <!-- Close button for the dialog box -->
+   <button id="close-dialog">x</button>
+ <br><br>
+   <!-- Buttons to filter by brand -->
+   <button  class="brand-button" data-brand="Mercedes">Mercedes</button>
+   <button class="brand-button" data-brand="Nissan">Nissan</button>
+   <button  class="brand-button" data-brand="Ford">Ford</button>
+   <button class="brand-button" data-brand="Honda">Honda</button>
+   <button  class="brand-button" data-brand="Hundai">Hundai</button>
+   <button class="brand-button" data-brand="Subaru">Subaru</button>
+   <button  class="brand-button" data-brand="Mazda">Mazda</button>
+   <button class="brand-button" data-brand="Chevrolet">Chevrolet</button>
+   <button  class="brand-button" data-brand="Wrangler">Wrangler</button>
+   <!-- Dialog box content -->
+ </div>
+
+ <button id="type-open-dialog-type">Type</button>
+ <!-- Overlay to cover the content when the dialog box is open -->
+ <div id="dialog-overlay-type"></div>
+ <!-- Container for the dialog box content -->
+ <div id="dialog-container-type">
+   <!-- Close button for the dialog box -->
+   <button id="close-dialog-type">x</button>
+ <br><br>
+   <!-- Buttons to filter by type -->
+   <button  class="type-button" data-type="Jeep">Jeep</button>
+   <button class="type-button" data-type="Coupe">Coupe</button>
+  
+   <!-- Dialog box content -->
+ </div>
+
+ <button id="type-open-dialog-price">Price</button>
+ <!-- Overlay to cover the content when the dialog box is open -->
+ <div id="dialog-overlay-price"></div>
+ <!-- Container for the dialog box content -->
+ <div id="dialog-container-price">
+   <!-- Close button for the dialog box -->
+   <button id="close-dialog-price">x</button>
+ <br><br>
+   <!-- Buttons to filter by type -->
+   <button  class="price-button" data-price="40">40lv per day</button>
+   <button class="price-button" data-price="45">45lv per day</button>
+   <button  class="price-button" data-price="50">50lv per day</button>
+   <button class="price-button" data-price="60">60lv per day</button>
+   <button  class="price-button" data-price="65">65lv per day</button>
+   <button class="price-button" data-price="70">70lv per day</button>
+   <button  class="price-button" data-price="75">75lv per day</button>
+   <button class="price-button" data-price="80">80lv per day</button>
+   <!-- Dialog box content -->
+ </div>
+
+ <button id="type-open-dialog-color">Color</button>
+ <!-- Overlay to cover the content when the dialog box is open -->
+ <div id="dialog-overlay-color"></div>
+ <!-- Container for the dialog box content -->
+ <div id="dialog-container-color">
+   <!-- Close button for the dialog box -->
+   <button id="close-dialog-color">x</button>
+ <br><br>
+   <!-- Buttons to filter by type -->
+   <button  class="color-button" data-color="red">red</button>
+   <button class="color-button" data-color="blue">blue</button>
+   <button  class="color-button" data-color="green">green</button>
+   <button class="color-button" data-color="black">black</button>
+   <!-- Dialog box content -->
+ </div>
+</div> 
+<br><br><br>
+
+ <div class="container">
+  <div class="cardlist">
+   
+  </div>
+ </div>
+<br><br>
+ <footer><i>
+  <p>&copy; 2023 WheelsOnTheGo.  </p>
+  <p>All rights reserved.</p></i>
+</footer>
+
+
+
+ <script>
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+    document.getElementById("navbar").style.padding = "5px 5px";
+    document.getElementById("logo").style.fontSize = "20px";
+  } else {
+    document.getElementById("navbar").style.padding = "5px 1px";
+    document.getElementById("logo").style.fontSize = "25px";
+  }
+}
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+ // const imagesContainer = document.querySelector('#images-container-brand');
+ const imagesData = [];
+ //const container= document.querySelector('.cardlist');
+
+  function fetchData(brand) {
+    let container = document.querySelector('.cardlist');
+    if (!container) {
+    container = document.createElement('div');
+    container.classList.add('cardList');
+    document.body.appendChild(container);
+  }
+
+  container.innerHTML = '';
+    fetch(`http://localhost:3000/brand?brand=${brand}`)
+      .then(response => response.json())
+      .then(images => {
+        // Clear the images container
+        images.forEach(image => {
+            const carContainer = document.createElement('div');
+             carContainer.classList.add('card');
+
+          // Create an image element
+          const img = document.createElement('img');
+          img.classList.add('card__image');
+          // Set the image data as the source of the image element
+          img.src = `data:${image.type};base64,${image.data}`;
+          // Append the image element to the container
+          carContainer.appendChild(img);
+
+          // Create a div element for the other data
+          const infoDiv = document.createElement('div');
+          infoDiv.classList.add('card__caption');
+          // Add the other data to the div element, including a button with the car ID
+          infoDiv.innerHTML = `
+  <p class="car-data"><i class="fas fa-car-side"></i> Brand: ${image.brandName}</p>
+  <p class="car-data"><i class="fas fa-car"></i> Type: ${image.typeName}</p>
+  <p class="car-data"><i class="fas fa-calendar-alt"></i> Year: ${image.year}</p>
+  <p class="car-data"><i class="fas fa-tachometer-alt"></i> Kilometers: ${image.kilemeters}</p>
+  <p class="car-data"><i class="fas fa-paint-brush"></i> Color: ${image.color}</p>
+  <p class="car-data"><i class="fas fa-dollar-sign"></i> Price: ${image.price}</p>
+  <button class="car-id" data-id="${image.idcar}"><i class="fas fa-car"></i> Rent Car</button>
+`;
+          // Append the div element to the container
+          carContainer.appendChild(infoDiv);
+          container.appendChild(carContainer)
+          $('#dialog-overlay').fadeOut();
+          $('#dialog-container').fadeOut();
+       
+        });
+
+        const carData = document.querySelectorAll('.car-data');
+carData.forEach(data => {
+  data.style.fontFamily = 'Roboto, sans-serif';
+  data.style.fontSize = '18px';
+});
+// Add event listeners to all the car ID buttons
+const carIdButtons = document.querySelectorAll('.car-id');
+carIdButtons.forEach(button => {
+    button.style.backgroundColor = '#e5b059ea';
+  button.style.color = 'black';
+  button.style.border = 'none';
+  button.style.padding = '10px';
+  button.style.borderRadius = '5px';
+  button.style.fontFamily = 'Roboto, sans-serif';
+  button.style.fontSize = '16px';
+  button.style.cursor = 'pointer';
+  button.style.transition = 'background-color 0.3s ease-in-out';
+  button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = '#717171';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#e5b059ea';
+  });
+  button.addEventListener('click', () => {
+    const carId = button.getAttribute('data-id');
+   // console.log(`Clicked on car with ID: ${carId}`);
+   
+
+    const dialog = document.createElement('dialog');
+    dialog.innerHTML = `
+    <div class="dialog-content">
+     
+      <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="pickup_date">Pickup Date:</label>
+        <input type="date" id="pickup_date" name="pickup_date"> <br>
+          
+        <label for="return_date">Return Date:</label>
+        <input type="date" id="return_date" name="return_date" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <button type="submit">Rent Car</button>        <br>
+        <button type="submit"> <a href="http://localhost:3000/rent"  style="text-decoration: none; color: black;">Download</a></button>
+
+        <button class="close-button" type="button">X</button>
+      </form>
+    </div>
+  
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.close-button').addEventListener('click', () => {
+  dialog.close();
+});
+
+    dialog.showModal();
+
+    // Handle form submission
+    dialog.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      
+      const formData = new FormData(event.target);
+      const renterName = formData.get('name');
+      //const renterEmail = formData.get('email');
+      const pickup_date = formData.get('pickup_date');
+      const return_date= formData.get('return_date');
+      const renterPhone = formData.get('phone');
+      const requestBody = JSON.stringify({
+        name: renterName,
+        carId: carId,
+        pickup_date: pickup_date,
+        return_date: return_date,
+        phone: renterPhone
+      });
+    const response =  fetch('http://localhost:3000/proba', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+       },
+         body: requestBody
+      });
+
+  
+response
+  .then(res => {
+    if (res.ok) {
+      console.log(`Renting car with ID ${carId} to ${renterName} (${pickup_date},${return_date}, ${renterPhone})`);
+      dialog.close();
+    } else {
+      res.text().then(errorMessage => {
+        if (res.status === 400) {
+          alert(errorMessage);
+        } else {
+          alert('An error occurred');
+        }
+      });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred');
+  });
+
+      
+    });
+  });
+});
+        });
+      }
+   
+  $(document).ready(function() {
+  
+});
+
+    $('#type-open-dialog').click(function() {
+      $('#dialog-overlay').fadeIn();
+      $('#dialog-container').fadeIn();
+    });
+  
+    // Close the dialog box when the close button is clicked
+    $('#close-dialog').click(function() {
+      $('#dialog-overlay').fadeOut();
+      $('#dialog-container').fadeOut();
+    });
+  
+    // Handle clicks on the brand buttons
+    $('.brand-button').click(function() {
+      const brand = $(this).data('brand');
+      fetchData(brand);
+    });
+
+// Refresh the page when the button is clicked
+
+
+function fetchDataType(type) {
+    let container = document.querySelector('.cardlist');
+    if (!container) {
+    container = document.createElement('div');
+    container.classList.add('cardList');
+    document.body.appendChild(container);
+  }
+
+  container.innerHTML = '';
+    fetch(`http://localhost:3000/type?type=${type}`)
+      .then(response => response.json())
+      .then(images => {
+        // Clear the images container
+        images.forEach(image => {
+            const carContainer = document.createElement('div');
+             carContainer.classList.add('card');
+
+          // Create an image element
+          const img = document.createElement('img');
+          img.classList.add('card__image');
+          // Set the image data as the source of the image element
+          img.src = `data:${image.type};base64,${image.data}`;
+          // Append the image element to the container
+          carContainer.appendChild(img);
+
+          // Create a div element for the other data
+          const infoDiv = document.createElement('div');
+          infoDiv.classList.add('card__caption');
+          // Add the other data to the div element, including a button with the car ID
+          infoDiv.innerHTML = `
+  <p class="car-data"><i class="fas fa-car-side"></i> Brand: ${image.brandName}</p>
+  <p class="car-data"><i class="fas fa-car"></i> Type: ${image.typeName}</p>
+  <p class="car-data"><i class="fas fa-calendar-alt"></i> Year: ${image.year}</p>
+  <p class="car-data"><i class="fas fa-tachometer-alt"></i> Kilometers: ${image.kilemeters}</p>
+  <p class="car-data"><i class="fas fa-paint-brush"></i> Color: ${image.color}</p>
+  <p class="car-data"><i class="fas fa-dollar-sign"></i> Price: ${image.price}</p>
+  <button class="car-id" data-id="${image.idcar}"><i class="fas fa-car"></i> Rent Car</button>
+`;
+          // Append the div element to the container
+          carContainer.appendChild(infoDiv);
+          container.appendChild(carContainer)
+          $('#dialog-overlay-type').fadeOut();
+          $('#dialog-container-type').fadeOut();
+       
+        });
+
+        const carData = document.querySelectorAll('.car-data');
+carData.forEach(data => {
+  data.style.fontFamily = 'Roboto, sans-serif';
+  data.style.fontSize = '18px';
+});
+// Add event listeners to all the car ID buttons
+const carIdButtons = document.querySelectorAll('.car-id');
+carIdButtons.forEach(button => {
+    button.style.backgroundColor = '#e5b059ea';
+  button.style.color = 'black';
+  button.style.border = 'none';
+  button.style.padding = '10px';
+  button.style.borderRadius = '5px';
+  button.style.fontFamily = 'Roboto, sans-serif';
+  button.style.fontSize = '16px';
+  button.style.cursor = 'pointer';
+  button.style.transition = 'background-color 0.3s ease-in-out';
+  button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = '#717171';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#e5b059ea';
+  });
+  button.addEventListener('click', () => {
+    const carId = button.getAttribute('data-id');
+   // console.log(`Clicked on car with ID: ${carId}`);
+   
+
+    const dialog = document.createElement('dialog');
+    dialog.innerHTML = `
+    <div class="dialog-content">
+     
+      <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="pickup_date">Pickup Date:</label>
+        <input type="date" id="pickup_date" name="pickup_date"> <br>
+          
+        <label for="return_date">Return Date:</label>
+        <input type="date" id="return_date" name="return_date" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <button type="submit">Rent Car</button>        <br>
+        <button type="submit"> <a href="http://localhost:3000/rent"  style="text-decoration: none; color: black;">Report</a></button>
+
+        <button class="close-button" type="button">X</button>
+      </form>
+    </div>
+  
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.close-button').addEventListener('click', () => {
+  dialog.close();
+});
+
+    dialog.showModal();
+
+    // Handle form submission
+    dialog.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      
+      const formData = new FormData(event.target);
+      const renterName = formData.get('name');
+      //const renterEmail = formData.get('email');
+      const pickup_date = formData.get('pickup_date');
+      const return_date= formData.get('return_date');
+      const renterPhone = formData.get('phone');
+      const requestBody = JSON.stringify({
+        name: renterName,
+        carId: carId,
+        pickup_date: pickup_date,
+        return_date: return_date,
+        phone: renterPhone
+      });
+    const response =  fetch('http://localhost:3000/proba', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+       },
+         body: requestBody
+      });
+
+  
+response
+  .then(res => {
+    if (res.ok) {
+      console.log(`Renting car with ID ${carId} to ${renterName} (${pickup_date},${return_date}, ${renterPhone})`);
+      dialog.close();
+    } else {
+      res.text().then(errorMessage => {
+        if (res.status === 400) {
+          alert(errorMessage);
+        } else {
+          alert('An error occurred');
+        }
+      });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred');
+  });
+
+      
+    });
+  });
+});
+        });
+      }
+   
+  $(document).ready(function() {
+  
+});
+  
+
+
+
+$(document).ready(function() {
+  $('#type-open-dialog-type').click(function() {
+    $('#dialog-overlay-type').fadeIn();
+    $('#dialog-container-type').fadeIn();
+  });
+
+  // Close the dialog box when the close button is clicked
+  $('#close-dialog-type').click(function() {
+    $('#dialog-overlay-type').fadeOut();
+    $('#dialog-container-type').fadeOut();
+
+  });
+
+  // Handle clicks on the type buttons
+  $('.type-button').click(function() {
+    const type = $(this).data('type');
+    fetchDataType(type);
+  });
+});
+
+
+function fetchDataColor(color) {
+    let container = document.querySelector('.cardlist');
+    if (!container) {
+    container = document.createElement('div');
+    container.classList.add('cardList');
+    document.body.appendChild(container);
+  }
+
+  container.innerHTML = '';
+    fetch(`http://localhost:3000/color?color=${color}`)
+      .then(response => response.json())
+      .then(images => {
+        // Clear the images container
+        images.forEach(image => {
+            const carContainer = document.createElement('div');
+             carContainer.classList.add('card');
+
+          // Create an image element
+          const img = document.createElement('img');
+          img.classList.add('card__image');
+          // Set the image data as the source of the image element
+          img.src = `data:${image.type};base64,${image.data}`;
+          // Append the image element to the container
+          carContainer.appendChild(img);
+
+          // Create a div element for the other data
+          const infoDiv = document.createElement('div');
+          infoDiv.classList.add('card__caption');
+          // Add the other data to the div element, including a button with the car ID
+          infoDiv.innerHTML = `
+  <p class="car-data"><i class="fas fa-car-side"></i> Brand: ${image.brandName}</p>
+  <p class="car-data"><i class="fas fa-car"></i> Type: ${image.typeName}</p>
+  <p class="car-data"><i class="fas fa-calendar-alt"></i> Year: ${image.year}</p>
+  <p class="car-data"><i class="fas fa-tachometer-alt"></i> Kilometers: ${image.kilemeters}</p>
+  <p class="car-data"><i class="fas fa-paint-brush"></i> Color: ${image.color}</p>
+  <p class="car-data"><i class="fas fa-dollar-sign"></i> Price: ${image.price}</p>
+  <button class="car-id" data-id="${image.idcar}"><i class="fas fa-car"></i> Rent Car</button>
+`;
+          // Append the div element to the container
+          carContainer.appendChild(infoDiv);
+          container.appendChild(carContainer)
+          $('#dialog-overlay-color').fadeOut();
+          $('#dialog-container-color').fadeOut();
+       
+        });
+
+        const carData = document.querySelectorAll('.car-data');
+carData.forEach(data => {
+  data.style.fontFamily = 'Roboto, sans-serif';
+  data.style.fontSize = '18px';
+});
+// Add event listeners to all the car ID buttons
+const carIdButtons = document.querySelectorAll('.car-id');
+carIdButtons.forEach(button => {
+    button.style.backgroundColor = '#e5b059ea';
+  button.style.color = 'black';
+  button.style.border = 'none';
+  button.style.padding = '10px';
+  button.style.borderRadius = '5px';
+  button.style.fontFamily = 'Roboto, sans-serif';
+  button.style.fontSize = '16px';
+  button.style.cursor = 'pointer';
+  button.style.transition = 'background-color 0.3s ease-in-out';
+  button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = '#717171';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#e5b059ea';
+  });
+  button.addEventListener('click', () => {
+    const carId = button.getAttribute('data-id');
+   // console.log(`Clicked on car with ID: ${carId}`);
+   
+
+    const dialog = document.createElement('dialog');
+    dialog.innerHTML = `
+    <div class="dialog-content">
+     
+      <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="pickup_date">Pickup Date:</label>
+        <input type="date" id="pickup_date" name="pickup_date"> <br>
+          
+        <label for="return_date">Return Date:</label>
+        <input type="date" id="return_date" name="return_date" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <button type="submit">Rent Car</button>        <br>
+        <button type="submit"> <a href="http://localhost:3000/rent"  style="text-decoration: none; color: black;">Report</a></button>
+
+        <button class="close-button" type="button">X</button>
+      </form>
+    </div>
+  
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.close-button').addEventListener('click', () => {
+  dialog.close();
+});
+
+    dialog.showModal();
+
+    // Handle form submission
+    dialog.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      
+      const formData = new FormData(event.target);
+      const renterName = formData.get('name');
+      //const renterEmail = formData.get('email');
+      const pickup_date = formData.get('pickup_date');
+      const return_date= formData.get('return_date');
+      const renterPhone = formData.get('phone');
+      const requestBody = JSON.stringify({
+        name: renterName,
+        carId: carId,
+        pickup_date: pickup_date,
+        return_date: return_date,
+        phone: renterPhone
+      });
+    const response =  fetch('http://localhost:3000/proba', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+       },
+         body: requestBody
+      });
+
+  
+response
+  .then(res => {
+    if (res.ok) {
+      console.log(`Renting car with ID ${carId} to ${renterName} (${pickup_date},${return_date}, ${renterPhone})`);
+      dialog.close();
+    } else {
+      res.text().then(errorMessage => {
+        if (res.status === 400) {
+          alert(errorMessage);
+        } else {
+          alert('An error occurred');
+        }
+      });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred');
+  });
+
+      
+    });
+  });
+});
+        });
+      }
+   
+  $(document).ready(function() {
+  
+});
+
+$(document).ready(function() {
+  $('#type-open-dialog-color').click(function() {
+    $('#dialog-overlay-color').fadeIn();
+    $('#dialog-container-color').fadeIn();
+  });
+
+  // Close the dialog box when the close button is clicked
+  $('#close-dialog-color').click(function() {
+    $('#dialog-overlay-color').fadeOut();
+    $('#dialog-container-color').fadeOut();
+
+ 
+
+  });
+
+  // Handle clicks on the type buttons
+  $('.color-button').click(function() {
+    const color = $(this).data('color');
+    fetchDataColor(color);
+  });
+});
+function fetchDataPrice(price) {
+    let container = document.querySelector('.cardlist');
+    if (!container) {
+    container = document.createElement('div');
+    container.classList.add('cardList');
+    document.body.appendChild(container);
+  }
+
+  container.innerHTML = '';
+    fetch(`http://localhost:3000/price?price=${price}`)
+      .then(response => response.json())
+      .then(images => {
+        // Clear the images container
+        images.forEach(image => {
+            const carContainer = document.createElement('div');
+             carContainer.classList.add('card');
+
+          // Create an image element
+          const img = document.createElement('img');
+          img.classList.add('card__image');
+          // Set the image data as the source of the image element
+          img.src = `data:${image.type};base64,${image.data}`;
+          // Append the image element to the container
+          carContainer.appendChild(img);
+
+          // Create a div element for the other data
+          const infoDiv = document.createElement('div');
+          infoDiv.classList.add('card__caption');
+          // Add the other data to the div element, including a button with the car ID
+          infoDiv.innerHTML = `
+  <p class="car-data"><i class="fas fa-car-side"></i> Brand: ${image.brandName}</p>
+  <p class="car-data"><i class="fas fa-car"></i> Type: ${image.typeName}</p>
+  <p class="car-data"><i class="fas fa-calendar-alt"></i> Year: ${image.year}</p>
+  <p class="car-data"><i class="fas fa-tachometer-alt"></i> Kilometers: ${image.kilemeters}</p>
+  <p class="car-data"><i class="fas fa-paint-brush"></i> Color: ${image.color}</p>
+  <p class="car-data"><i class="fas fa-dollar-sign"></i> Price: ${image.price}</p>
+  <button class="car-id" data-id="${image.idcar}"><i class="fas fa-car"></i> Rent Car</button>
+`;
+          // Append the div element to the container
+          carContainer.appendChild(infoDiv);
+          container.appendChild(carContainer)
+          $('#dialog-overlay-price').fadeOut();
+          $('#dialog-container-price').fadeOut();
+       
+        });
+
+        const carData = document.querySelectorAll('.car-data');
+carData.forEach(data => {
+  data.style.fontFamily = 'Roboto, sans-serif';
+  data.style.fontSize = '18px';
+});
+// Add event listeners to all the car ID buttons
+const carIdButtons = document.querySelectorAll('.car-id');
+carIdButtons.forEach(button => {
+    button.style.backgroundColor = '#e5b059ea';
+  button.style.color = 'black';
+  button.style.border = 'none';
+  button.style.padding = '10px';
+  button.style.borderRadius = '5px';
+  button.style.fontFamily = 'Roboto, sans-serif';
+  button.style.fontSize = '16px';
+  button.style.cursor = 'pointer';
+  button.style.transition = 'background-color 0.3s ease-in-out';
+  button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = '#717171';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '#e5b059ea';
+  });
+  button.addEventListener('click', () => {
+    const carId = button.getAttribute('data-id');
+   // console.log(`Clicked on car with ID: ${carId}`);
+   
+
+    const dialog = document.createElement('dialog');
+    dialog.innerHTML = `
+    <div class="dialog-content">
+     
+      <form id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="pickup_date">Pickup Date:</label>
+        <input type="date" id="pickup_date" name="pickup_date"> <br>
+          
+        <label for="return_date">Return Date:</label>
+        <input type="date" id="return_date" name="return_date" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <button type="submit">Rent Car</button><br>
+        <button type="submit"> <a href="http://localhost:3000/rent"  style="text-decoration: none; color: black;">Report</a></button>
+
+        <button class="close-button" type="button">X</button>
+      </form>
+    </div>
+  
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.close-button').addEventListener('click', () => {
+  dialog.close();
+});
+
+    dialog.showModal();
+
+    // Handle form submission
+    dialog.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      
+      const formData = new FormData(event.target);
+      const renterName = formData.get('name');
+      //const renterEmail = formData.get('email');
+      const pickup_date = formData.get('pickup_date');
+      const return_date= formData.get('return_date');
+      const renterPhone = formData.get('phone');
+      const requestBody = JSON.stringify({
+        name: renterName,
+        carId: carId,
+        pickup_date: pickup_date,
+        return_date: return_date,
+        phone: renterPhone
+      });
+    const response =  fetch('http://localhost:3000/proba', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+       },
+         body: requestBody
+      });
+
+  
+response
+  .then(res => {
+    if (res.ok) {
+      console.log(`Renting car with ID ${carId} to ${renterName} (${pickup_date},${return_date}, ${renterPhone})`);
+      dialog.close();
+    } else {
+      res.text().then(errorMessage => {
+        if (res.status === 400) {
+          alert(errorMessage);
+        } else {
+          alert('An error occurred');
+        }
+      });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred');
+  });
+
+      
+    });
+  });
+});
+        });
+      }
+
+$(document).ready(function() {
+  $('#type-open-dialog-price').click(function() {
+    $('#dialog-overlay-price').fadeIn();
+    $('#dialog-container-price').fadeIn();
+  });
+
+  // Close the dialog box when the close button is clicked
+  $('#close-dialog-price').click(function() {
+    $('#dialog-overlay-price').fadeOut();
+    $('#dialog-container-price').fadeOut();
+
+ 
+
+  });
+
+  // Handle clicks on the type buttons
+  $('.price-button').click(function() {
+    const price = $(this).data('price');
+    fetchDataPrice(price);
+  });
+});
+
+  </script>
+</body>
+
+
+</html>

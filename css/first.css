@@ -1,0 +1,294 @@
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+
+#navbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+#navbar #logo {
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#navbar a:hover {
+  background-color: #e5af5944;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #e5b059ea;
+  color: white;
+}
+
+#navbar-right {
+  float: right;
+}
+
+@media screen and (max-width: 380px) {
+  #navbar {
+    padding: 20px 10px !important;
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+    float: none;
+  }
+}
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  
+  background-color: rgba(0,0,0,0.5) ;
+  color:  #dbdada;
+  font-size: 50px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+figure {
+  margin: 0;
+  display: block;
+}
+
+body {
+  background: #eee;
+}
+h3:first-child {
+  margin-top: 0;
+}
+/* container */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+/*card */
+.card {
+  border: solid 0.5em transparent;
+  background: #fff;
+  background-clip: padding-box;
+}
+.card figure,
+.card img,
+.card svg {
+  width: 100%;
+}
+.card__caption {
+  padding: 1em;
+}
+/* cardlist */
+.cardlist {
+  margin: -0.5em;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.cardlist .card {
+  margin-bottom: 1em;
+}
+@media screen and (min-width: 500px) {
+  .cardlist .card {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 900px) {
+  .cardlist .card {
+    width: 33.3333%;
+  }
+}
+/* a card that is a link */
+a.card {
+  display: block;
+}
+a.card:focus,
+a.card:hover {
+  text-decoration: none;
+}
+
+.car-id:hover {
+  background-color: #f5d5b5ea;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+dialog label {
+  margin-bottom: 1px;
+}
+
+dialog input {
+  border-color: rgba(192, 135, 44, 0.918);
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 3px rgba(229, 176, 89, 0.918);
+}
+
+dialog button[type="submit"] {
+  padding: 10px;
+  background-color: rgba(229, 176, 89, 0.918);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+dialog button[type="submit"]:hover {
+  background-color: #d4a44dee;
+}
+.close-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+}
+
+footer {
+	background-color:  rgba(192, 135, 44, 0.918);
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}

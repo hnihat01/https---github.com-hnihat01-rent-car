@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="/js/jquery-3.6.0.min.js"></script>
+ <link rel="stylesheet" href="css/input.css" >
+</head>
+<body>
+     
+<div class="container">
+  <div class="image-wapper" style="background-image: url(pictures/car-rental1.png)">
+    <h1>Register</h1>
+  </div>
+  <div class="form-wapper">
+    <div class="form-header">
+    </div>
+    <div class="form-body">
+  <form id="myForm">
+    <div class="input-wrapper">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"></div>
+    <div class="input-wrapper">
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address"></div>
+    <div class="input-wrapper">
+    <label for="number">Number:</label>
+    <input type="text" id="number" name="number"></div>
+    <div class="input-wrapper">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"></div>
+    <button type="submit">Submit</button><button type="button" id="updateBtn">Update</button>
+  </form><br>
+  <div class="form-footer">
+    <p>You already have an account? <a class="form-link" href="http://localhost:3000/">Log In</a></p>
+  </div>
+  <script>
+   const form = document.getElementById('myForm');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch('http://localhost:3000/input', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    window.location.href = '/';
+  })
+  .catch(error => console.error('Error:', error));
+});
+
+
+const formU = document.getElementById('myForm');
+  const updateBtn = document.getElementById('updateBtn');
+  
+  updateBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(formU);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch('http://localhost:3000/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      window.location.href = '/';
+    })
+    .catch(error => console.error('Error:', error));
+  });
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+
+<html>
+    <head>
+      <style>
+     form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      label {
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #555;
+      }
+      
+      input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+      }
+      
+      button[type="submit"] {
+        padding: 10px;
+        background-color: #d4a44dee;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: #d4a44dee;
+      }
+      
+      /* Style the report table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      
+      th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+      
+      th {
+        background-color: #d4a54d8c;
+        font-weight: bold;
+      }
+      </style>
+      
+    </head>
+    <body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+      
+
+      <form id="myform">
+        <label>Name</label>
+        <input type="text" name="name">
+        <button type="submit">Report</button><br>
+       
+       </form>
+       <div id="report"></div>
+        <script>
+const form = document.getElementById('myform');
+const reportDiv = document.getElementById('report');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const response = await fetch(`http://localhost:3000/report?name=${data.name}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  console.log(response);
+
+  const reportData = await response.json();
+  let reportHTML = '<br><h1>Information about rented cars from date to date.</h1><br><table><tr><th>Custome name</th><th>Address</th><th>Phone number</th><th>Car brand</th><th>Car model</th><th>Price per day</th><th>Pickup data</th><th>Return data</th></tr>';
+  reportData.forEach(report => {
+    reportHTML += `<tr><td>${report.customerName}</td><td>${report.address}</td><td>${report.number}</td><td>${report.brandName}</td><td>${report.model}</td><td>${report.pricePerDay}</td><td>${report.pickup_date.substring(0, 10)}</td><td>${report.return_date.substring(0, 10)}</td></tr>`;
+
+   // reportHTML += `<tr><td>${report.customerName}</td><td>${report.address}</td><td>${report.number}</td><td>${report.brandName}</td><td>${report.model}</td><td>${report.pricePerDay}</td><td>${report.pickup_data}</td><td>${report.return_data}</td></tr>`;
+  });
+  reportHTML += '</table> <br><button id="printBtn" type="submit">Download</button>';
+  reportDiv.innerHTML = reportHTML;
+// Get the "Print" button element
+const printBtn = document.getElementById("printBtn");
+
+// Add an event listener to the button
+printBtn.addEventListener("click", () => {
+  // Get the table element
+  const table = document.querySelector("table");
+
+  // Use jsPDF library to create a PDF document
+  const doc = new jsPDF();
+  doc.autoTable({ html: table });
+
+  // Save the PDF document
+  doc.save("report.pdf");
+});
+
+  
+});
+
+        </script>
+    </body>
+</html>
